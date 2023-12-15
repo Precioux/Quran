@@ -13,21 +13,30 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.quran.BottomNavigationBar
 import com.example.quran.R
+import com.example.quran.ui.theme.saminp
 
 
 @Composable
 fun Item2Page(navController: NavController, pageNumber: Int) {
     val persianPages = listOf(
-        R.drawable.persian_page217,
-        R.drawable.persian_page218,
-        R.drawable.persian_page219,
-        R.drawable.persian_page220,
-        R.drawable.persian_page221,
-        R.drawable.persian_page222
+        R.drawable.p1,
+        R.drawable.p2,
+        R.drawable.p3,
+        R.drawable.p4,
+        R.drawable.p5,
+        R.drawable.p6,
+        R.drawable.p7,
+        R.drawable.p8,
+        R.drawable.p9,
+        R.drawable.p10,
+        R.drawable.p11,
+        R.drawable.p12
+
     )
 
     val englishPages = listOf(
@@ -55,14 +64,14 @@ fun Item2Page(navController: NavController, pageNumber: Int) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(2.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Button(onClick = { isPersian = true }) {
-                Text("Persian")
+            Button(onClick = { isPersian = true }, colors = ButtonDefaults.buttonColors(containerColor = saminp)) {
+                Text(text="Persian" )
             }
 
-            Button(onClick = { isPersian = false }) {
+            Button(onClick = { isPersian = false },colors = ButtonDefaults.buttonColors(containerColor = saminp)) {
                 Text("English")
             }
         }
@@ -74,7 +83,7 @@ fun Item2Page(navController: NavController, pageNumber: Int) {
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(360.dp)
+                .height(410.dp)
                 .clip(MaterialTheme.shapes.medium)
                 .background(MaterialTheme.colorScheme.surface)
                 .clickable {
@@ -101,11 +110,7 @@ fun Item2Page(navController: NavController, pageNumber: Int) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
             }
 
-            Text(
-                text = "Page ${currentPage + 217}",
-                style = MaterialTheme.typography.bodySmall,
-//                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
+
 
             IconButton(onClick = {
                 if (currentPage != persianPages.size - 1) {
