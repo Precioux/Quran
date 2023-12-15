@@ -2,4 +2,4 @@ This project is a simple Quran that shows some pages of Quran with their Persian
 
 #### Amirkabir University of Technology - Fall 2023
 
-<img src="quran.PNG">
+<img src="quran.png">
