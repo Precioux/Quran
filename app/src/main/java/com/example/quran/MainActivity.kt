@@ -35,6 +35,7 @@ import com.example.quran.pages.Item1Screen
 import com.example.quran.pages.Item2Page
 import com.example.quran.pages.Item3Page
 import com.example.quran.pages.Item4Page
+import com.example.quran.pages.Item5Page
 import com.example.quran.ui.theme.QuranTheme
 import com.example.quran.ui.theme.saminp
 import com.example.quran.ui.theme.saminp2
@@ -128,6 +129,12 @@ fun Navigation(navController: NavHostController) {
         ) { backStackEntry ->
             Item4Page(navController = navController, pageNumber = backStackEntry.arguments?.getInt("pageNumber") ?: 0)
         }
+        composable(
+            "item5/{pageNumber}",
+            arguments = listOf(navArgument("pageNumber") { type = NavType.IntType })
+        ) { backStackEntry ->
+            Item5Page(navController = navController, pageNumber = backStackEntry.arguments?.getInt("pageNumber") ?: 0)
+        }
     }
 }
 @Composable
@@ -152,8 +159,11 @@ fun MenuScreen(navController: NavController) {
         MenuItem("قرآن") {
             navController.navigate("item1/0")
         }
-        MenuItem2("ترجمه") {
+        MenuItem2("ترجمه فارسی") {
             navController.navigate("item2/0")
+        }
+        MenuItem2("ترجمه انگلیسی") {
+            navController.navigate("item5/0")
         }
         MenuItem3("تقسیر") {
             navController.navigate("item3/0")
