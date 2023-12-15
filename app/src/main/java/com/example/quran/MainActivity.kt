@@ -14,9 +14,6 @@ import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.KeyboardArrowRight
 import androidx.compose.material3.*
-//import androidx.compose.material3.icons.Icons
-//import androidx.compose.material3.icons.filled.*
-//import androidx.compose.material3.rememberScaffoldState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier

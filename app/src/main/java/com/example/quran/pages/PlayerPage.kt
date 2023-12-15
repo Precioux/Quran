@@ -17,8 +17,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.outlined.AccountBox
+import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +40,7 @@ import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import androidx.compose.ui.Modifier
 import com.example.quran.BottomNavigationBar
+import com.example.quran.ui.theme.saminp
 
 private var exoPlayer: ExoPlayer? = null
 private val pageSize = 6
@@ -62,16 +66,23 @@ fun Item4Page(navController: NavController, pageNumber: Int) {
         R.raw.parhizgar
     )
 
-//    val abdolbasit = listOf(
-//        R.raw.abdulbasit
-//    )
+    val abdolbasit = listOf(
+        R.raw.abdul
+    )
 
+    val manshavi = listOf(
+        R.raw.manshavi
+    )
+
+    val maher = listOf(
+        R.raw.maher
+    )
 
     var recMap : HashMap<String, List<Int>?> = HashMap()
     recMap.put("پرهیزگار", parhizgar)
-    recMap.put("عبدالباسط", parhizgar)
-    recMap.put("منشاوی", parhizgar)
-    recMap.put("ماهر", parhizgar)
+    recMap.put("عبدالباسط", abdolbasit)
+    recMap.put("منشاوی", manshavi)
+    recMap.put("ماهر", maher)
 
 
 
@@ -89,23 +100,24 @@ fun Item4Page(navController: NavController, pageNumber: Int) {
             .padding(16.dp),
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally,
-    ){
+    ) {
         IconButton(
             modifier = Modifier
-                .height(100.dp)
-                .width(100.dp),
+                .height(300.dp)
+                .width(300.dp),
             onClick = {
-                isPlaying != isPlaying
+                // Toggle the isPlaying state
+                isPlaying = !isPlaying
                 playSong(currentReciter[currentPage], ctx)
             }
-
         ) {
             Icon(
                 modifier = Modifier
-                    .width(100.dp)
-                    .height(100.dp),
-                imageVector = if (isPlaying) Icons.Default.MoreVert else Icons.Default.PlayArrow,
-                contentDescription = if (isPlaying) "Stop" else "Play"
+                    .width(300.dp)
+                    .height(300.dp),
+                imageVector = if (isPlaying) Icons.Outlined.AccountBox else Icons.Outlined.PlayArrow,
+                contentDescription = if (isPlaying) "Stop" else "Play",
+                tint = saminp
             )
         }
 
@@ -115,11 +127,7 @@ fun Item4Page(navController: NavController, pageNumber: Int) {
                 .padding(8.dp),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
-            // Person Dropdown
-//            Text(
-//                text = "انتخاب کنید:",
-//                style = MaterialTheme.typography.headlineMedium,
-//                )
+
             LazyColumn(
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.background)
@@ -137,32 +145,6 @@ fun Item4Page(navController: NavController, pageNumber: Int) {
             }
         }
 
-        // Navigation Buttons
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            IconButton(onClick = {
-                if (currentPage != 0) {
-                    currentPage -= 1
-                }
-//                currentPage = (currentPage - 1 + persianPages.size) % persianPages.size
-            }) {
-                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
-            }
-
-
-            IconButton(onClick = {
-                if (currentPage != pageSize - 1) {
-                    currentPage += 1
-                }
-//                currentPage = (currentPage + 1) % persianPages.size
-            }) {
-                Icon(imageVector = Icons.Default.ArrowForward, contentDescription = null)
-            }
-        }
 
         // Bottom Bar for Navigation
         BottomNavigationBar(navController = navController, currentPage = currentPage.toInt())
