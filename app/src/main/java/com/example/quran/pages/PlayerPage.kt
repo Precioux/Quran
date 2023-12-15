@@ -140,25 +140,6 @@ fun Item4Page(navController: NavController, pageNumber: Int) {
                     )
                 }
             }
-
-//            // Reading Dropdown
-//            Text("Select Reading:")
-//            LazyColumn(
-//                modifier = Modifier
-//                    .background(MaterialTheme.colorScheme.background)
-//                    .width(150.dp)
-//            ) {
-//                readings[selectedPerson]?.let { readingsList ->
-//                    items(readingsList) { reading ->
-//                        Text(
-//                            text = reading,
-//                            modifier = Modifier.clickable {
-//                                selectedReading = reading
-//                            }
-//                        )
-//                    }
-//                }
-//            }
         }
 
         // Navigation Buttons
@@ -177,11 +158,6 @@ fun Item4Page(navController: NavController, pageNumber: Int) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
             }
 
-            Text(
-                text = "Page ${currentPage + 217}",
-                style = MaterialTheme.typography.bodySmall,
-//                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
 
             IconButton(onClick = {
                 if (currentPage != pageSize - 1) {
@@ -197,14 +173,6 @@ fun Item4Page(navController: NavController, pageNumber: Int) {
         BottomNavigationBar(navController = navController, currentPage = currentPage.toInt())
     }
 
-//    val englishPages = listOf(
-//        R.drawable.english_page217,
-//        R.drawable.english_page218,
-//        R.drawable.english_page219,
-//        R.drawable.english_page220,
-//        R.drawable.english_page221,
-//        R.drawable.english_page222
-//    )
 
 
 

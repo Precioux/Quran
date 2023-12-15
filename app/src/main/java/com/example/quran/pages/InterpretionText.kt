@@ -59,11 +59,11 @@ fun Item3Page(navController: NavController, pageNumber: Int) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Button(onClick = { isAlMizaan = true }) {
-                Text("Al_Mizaan")
+                Text("المیزان")
             }
 
             Button(onClick = { isAlMizaan = false }) {
-                Text("Noor")
+                Text("نور")
             }
         }
 
@@ -101,11 +101,7 @@ fun Item3Page(navController: NavController, pageNumber: Int) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
             }
 
-            Text(
-                text = "Page ${currentPage + 217}",
-                style = MaterialTheme.typography.bodySmall,
-//                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
+
 
             IconButton(onClick = {
                 if (currentPage != almizaanPages.size - 1) {

@@ -12,6 +12,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.KeyboardArrowRight
 import androidx.compose.material3.*
 //import androidx.compose.material3.icons.Icons
 //import androidx.compose.material3.icons.filled.*
@@ -269,24 +270,51 @@ fun BottomNavigationBar(navController: NavController, currentPage: Int) {
         tonalElevation = 8.dp,
         containerColor = saminp
     ) {
-        // Centered and larger home icon
-        Box(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
-                .padding(8.dp),
-            contentAlignment = Alignment.Center
-        ) {
-            IconButton(
-                onClick = { navController.navigate("menu") },
-                modifier = Modifier.size(60.dp) // Adjust the size as needed
-            ) {
-                Icon(
-                    imageVector = Icons.Outlined.Home,
-                    contentDescription = null,
-                    tint = Color.White
-                )
+        // Buttons to navigate to other items (item 1, item 2, item 3, item 4)
+        IconButton(onClick = { navController.navigate("menu") }) {
+            Icon(imageVector = Icons.Outlined.Home, contentDescription = null,tint = Color.White)
+        }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        // Add buttons to navigate to other items (item 2, item 3, item 4)
+        IconButton(onClick = {
+            if (navController.currentBackStackEntry?.destination?.route != "item1/{pageNumber}") {
+                navController.navigate("item1/${currentPage}")
             }
+        }) {
+            Icon(imageVector = Icons.Outlined.KeyboardArrowRight, contentDescription = null,tint = Color.White)
+        }
+
+        IconButton(onClick = {
+            if (navController.currentBackStackEntry?.destination?.route != "item2/{pageNumber}") {
+                navController.navigate("item2/${currentPage}")
+            }
+        }) {
+            Icon(imageVector = Icons.Outlined.KeyboardArrowRight, contentDescription = null,tint = Color.White)
+        }
+        IconButton(onClick = {
+            if (navController.currentBackStackEntry?.destination?.route != "item5/{pageNumber}") {
+                navController.navigate("item5/${currentPage}")
+            }
+        }) {
+            Icon(imageVector = Icons.Outlined.KeyboardArrowRight, contentDescription = null,tint = Color.White)
+        }
+
+        IconButton(onClick = {
+            if (navController.currentBackStackEntry?.destination?.route != "item3/{pageNumber}") {
+                navController.navigate("item3/${currentPage}")
+            }
+        }) {
+            Icon(imageVector = Icons.Outlined.KeyboardArrowRight, contentDescription = null,tint = Color.White)
+        }
+
+        IconButton(onClick = {
+            if (navController.currentBackStackEntry?.destination?.route != "item4/{pageNumber}") {
+                navController.navigate("item4/${currentPage}")
+            }
+        }) {
+            Icon(imageVector = Icons.Outlined.KeyboardArrowRight, contentDescription = null,tint = Color.White)
         }
     }
 }
