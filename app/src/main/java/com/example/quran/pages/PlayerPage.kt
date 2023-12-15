@@ -136,9 +136,11 @@ fun Item4Page(navController: NavController, pageNumber: Int) {
                 items(reciters) { reciter ->
                     Text(
                         text = reciter,
-                        style = MaterialTheme.typography.bodyLarge,
+                        style = MaterialTheme.typography.headlineLarge,
+                        color = saminp,
                         modifier = Modifier.clickable {
-                            currentReciter = currentReciter
+                            // Update currentReciter with the selected reciter's list
+                            currentReciter = recMap[reciter] ?: emptyList()
                         }
                     )
                 }
