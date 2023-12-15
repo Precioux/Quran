@@ -17,32 +17,34 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.quran.BottomNavigationBar
 import com.example.quran.R
+import com.example.quran.ui.theme.saminp
 
 
 @Composable
 fun Item3Page(navController: NavController, pageNumber: Int) {
     val almizaanPages = listOf(
-        R.drawable.almizaan_1
-//        R.drawable.almizaan_2,
-//        R.drawable.almizaan_3,
-//        R.drawable.almizaan_4,
-//        R.drawable.almizaan_5,
-//        R.drawable.almizaan_6
+        R.drawable.tm1,
+        R.drawable.tm2,
+        R.drawable.tm3,
+        R.drawable.tm4,
+        R.drawable.tm5,
+        R.drawable.tm6,
+        R.drawable.tm7,
+        R.drawable.tm8,
+        R.drawable.tm9
     )
 
-    val noorPages = listOf(
-        R.drawable.noor_1
-//        R.drawable.noor_2,
-//        R.drawable.noor_3,
-//        R.drawable.noor_4,
-//        R.drawable.noor_5,
-//        R.drawable.noor_6
+    val nemonehPages = listOf(
+        R.drawable.n1,
+        R.drawable.n2,
+        R.drawable.n3,
+        R.drawable.n4,
+        R.drawable.n5
     )
 
-    var currentPage by remember { mutableStateOf(pageNumber) }
+    var almizaanPage by remember { mutableStateOf(pageNumber) }
+    var nemonehPage by remember { mutableStateOf(pageNumber) }
     var isAlMizaan by remember { mutableStateOf(true) }
-
-    val scrollState = rememberLazyListState()
 
     Column(
         modifier = Modifier
@@ -50,40 +52,49 @@ fun Item3Page(navController: NavController, pageNumber: Int) {
             .padding(16.dp),
         verticalArrangement = Arrangement.Bottom
     ) {
-
         // Language Switch Buttons
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Button(onClick = { isAlMizaan = true }) {
+            Button(onClick = {
+                isAlMizaan = true
+                // Reset nemonehPage when switching to almizaanPages
+                nemonehPage = pageNumber
+            }, colors = ButtonDefaults.buttonColors(saminp)) {
                 Text("المیزان")
             }
 
-            Button(onClick = { isAlMizaan = false }) {
-                Text("نور")
+            Button(onClick = {
+                isAlMizaan = false
+                // Reset almizaanPage when switching to nemonehPages
+                almizaanPage = pageNumber
+            }, colors = ButtonDefaults.buttonColors(saminp)) {
+                Text("نمونه")
             }
         }
 
         // Page Display
         Image(
-            painter = if (isAlMizaan) painterResource(id = almizaanPages[currentPage])
-            else painterResource(id = noorPages[currentPage]),
+            painter = if (isAlMizaan) painterResource(id = almizaanPages[almizaanPage])
+            else painterResource(id = nemonehPages[nemonehPage]),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(360.dp)
+                .height(400.dp)
                 .clip(MaterialTheme.shapes.medium)
                 .background(MaterialTheme.colorScheme.surface)
                 .clickable {
                     // Toggle visibility of navigation buttons on image click
-                    currentPage = (currentPage + 1) % almizaanPages.size
+                    if (isAlMizaan) {
+                        almizaanPage = (almizaanPage + 1) % almizaanPages.size
+                    } else {
+                        nemonehPage = (nemonehPage + 1) % nemonehPages.size
+                    }
                 }
         )
-
-
 
         // Navigation Buttons
         Row(
@@ -93,27 +104,27 @@ fun Item3Page(navController: NavController, pageNumber: Int) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             IconButton(onClick = {
-                if (currentPage != 0) {
-                    currentPage -= 1
+                if (isAlMizaan && almizaanPage != 0) {
+                    almizaanPage -= 1
+                } else if (!isAlMizaan && nemonehPage != 0) {
+                    nemonehPage -= 1
                 }
-//                currentPage = (currentPage - 1 + persianPages.size) % persianPages.size
             }) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
             }
 
-
-
             IconButton(onClick = {
-                if (currentPage != almizaanPages.size - 1) {
-                    currentPage += 1
+                if (isAlMizaan && almizaanPage != almizaanPages.size - 1) {
+                    almizaanPage += 1
+                } else if (!isAlMizaan && nemonehPage != nemonehPages.size - 1) {
+                    nemonehPage += 1
                 }
-//                currentPage = (currentPage + 1) % persianPages.size
             }) {
                 Icon(imageVector = Icons.Default.ArrowForward, contentDescription = null)
             }
         }
 
         // Bottom Bar for Navigation
-        BottomNavigationBar(navController = navController, currentPage = currentPage.toInt())
+        BottomNavigationBar(navController = navController, currentPage = pageNumber)
     }
 }
