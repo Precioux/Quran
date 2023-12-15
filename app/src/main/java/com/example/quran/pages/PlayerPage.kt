@@ -58,34 +58,29 @@ fun playSong(soundID:Int, context: Context) {
 
 @Composable
 fun Item4Page(navController: NavController, pageNumber: Int) {
-    val abdolbasit = listOf(
-        R.raw.abdolbasit_217,
-        R.raw.abdolbasit_218,
-        R.raw.abdolbasit_219,
-        R.raw.abdolbasit_220,
-        R.raw.abdolbasit_221,
-        R.raw.abdolbasit_222,
+    val parhizgar = listOf(
+        R.raw.parhizgar
     )
 
-    val menshavi = listOf(
-        R.raw.menshavi_217,
-        R.raw.menshavi_218,
-        R.raw.menshavi_219,
-        R.raw.menshavi_220,
-        R.raw.menshavi_221,
-        R.raw.menshavi_222,
-    )
+//    val abdolbasit = listOf(
+//        R.raw.abdulbasit
+//    )
+
 
     var recMap : HashMap<String, List<Int>?> = HashMap()
-    recMap.put("AbdolBasit", abdolbasit)
-    recMap.put("Menshavi", abdolbasit)
+    recMap.put("پرهیزگار", parhizgar)
+    recMap.put("عبدالباسط", parhizgar)
+    recMap.put("منشاوی", parhizgar)
+    recMap.put("ماهر", parhizgar)
+
+
 
     var reciters = recMap.keys.toList()
 
     var ctx = LocalContext.current
 
     var currentPage by remember { mutableStateOf(pageNumber) }
-    var currentReciter by remember { mutableStateOf(abdolbasit) }
+    var currentReciter by remember { mutableStateOf(parhizgar) }
     var isPlaying by remember { mutableStateOf(false) }
 
     Column(
@@ -121,10 +116,10 @@ fun Item4Page(navController: NavController, pageNumber: Int) {
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             // Person Dropdown
-            Text(
-                text = "Select Person:",
-                style = MaterialTheme.typography.headlineMedium,
-                )
+//            Text(
+//                text = "انتخاب کنید:",
+//                style = MaterialTheme.typography.headlineMedium,
+//                )
             LazyColumn(
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.background)
