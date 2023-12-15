@@ -39,7 +39,7 @@ fun Item1Screen(navController: NavController, pageNumber: Int) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(10.dp)
             .systemBarsPadding(),
         verticalArrangement = Arrangement.Bottom
     ) {
@@ -49,7 +49,7 @@ fun Item1Screen(navController: NavController, pageNumber: Int) {
             contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(400.dp)
+                .height(480.dp)
                 .clip(MaterialTheme.shapes.medium)
                 .background(MaterialTheme.colorScheme.surface)
                 .clickable {
@@ -75,8 +75,8 @@ fun Item1Screen(navController: NavController, pageNumber: Int) {
             }
 
             Text(
-                text = "Page ${currentPage + 217}",
-                style = MaterialTheme.typography.bodySmall,
+                text = "Page ${currentPage + 235}",
+                style = MaterialTheme.typography.titleMedium,
 //                modifier = Modifier.align(Alignment.CenterHorizontally)
             )
 
